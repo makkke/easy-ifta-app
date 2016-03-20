@@ -1,0 +1,15 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker build -t vivanov1410/simple-ifta-app .
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push vivanov1410/simple-ifta-app
