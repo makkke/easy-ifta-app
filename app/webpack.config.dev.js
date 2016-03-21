@@ -1,4 +1,4 @@
-var webpack = require('webpack');
+const webpack = require('webpack')
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -15,10 +15,6 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.js', '.jsx'],
-  },
-
-  watchOptions: {
-    poll: true
   },
 
   module: {
@@ -42,8 +38,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        CLIENT: JSON.stringify(true)
-      }
-    })
+        CLIENT: JSON.stringify(true),
+      },
+    }),
   ],
-};
+}

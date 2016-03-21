@@ -26,6 +26,7 @@
   "bugs": {
     "url": "https://github.com/vivanov1410/simple-ifta-app/issues"
   },
+  "license": "MIT",
   "dependencies": {
     "babel-core": "^6.4.5",
     "body-parser": "^1.14.2",

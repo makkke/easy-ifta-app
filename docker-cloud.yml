@@ -1,5 +1,5 @@
 web:
-  image: 'vivanov1410/simple-ifta-app:latest'
+  image: 'vivanov1410/simple-ifta-app'
   autoredeploy: true
   links:
     - mongo:db
@@ -7,4 +7,4 @@ web:
     - '80:80'
 
 mongo:
-  image: 'mongo:latest'
+  image: 'mongo'
