@@ -16,7 +16,8 @@ COPY app \
      /app/
 
 RUN npm install --no-optional
+RUN npm run build
 
-CMD npm run bs
+CMD bash entrypoint.sh
 
 EXPOSE 80

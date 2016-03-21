@@ -19,4 +19,4 @@ function check_port() {
 
 # check_port "db" "27017"
 
-npm run bs
+npm run start:prod
