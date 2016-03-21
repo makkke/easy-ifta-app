@@ -35,11 +35,11 @@ node_modules
 *.sublime-workspace
 
 .DS_Store
-node_modules/
+app/node_modules/
 npm-debug.log
 .idea/
 dump.rdb
 .vscode/
-public/*
-static/dist
-static/css/app.min.css
+app/public/*
+app/static/dist
+app/static/css/app.min.css

@@ -1,9 +1,10 @@
 web:
-  image: vivanov1410/simple-ifta-app
-  ports:
-    - 80:80
+  image: 'vivanov1410/simple-ifta-app:latest'
+  autoredeploy: true
   links:
-    - mongo
+    - mongo:db
+  ports:
+    - '80:80'
 
 mongo:
-  image: mongo
+  image: 'mongo:latest'
