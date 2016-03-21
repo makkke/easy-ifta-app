@@ -1,0 +1,9 @@
+web:
+  image: vivanov1410/simple-ifta-app
+  ports:
+    - 80:80
+  links:
+    - mongo
+
+mongo:
+  image: mongo
