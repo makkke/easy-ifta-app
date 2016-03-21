@@ -17,7 +17,7 @@ function check_port() {
   done
 }
 
-check_port "db" "27017"
+# check_port "db" "27017"
 
 npm run build
 npm run start:prod
