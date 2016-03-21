@@ -1,2 +1,2 @@
-# simple-ifta-app
+# Simple IFTA
 App of Simple IFTA

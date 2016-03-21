@@ -33,3 +33,13 @@ node_modules
 .node_repl_history
 
 *.sublime-workspace
+
+.DS_Store
+node_modules/
+npm-debug.log
+.idea/
+dump.rdb
+.vscode/
+public/*
+static/dist
+static/css/app.min.css
