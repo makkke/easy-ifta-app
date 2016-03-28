@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
 import classNames from 'classnames'
-import styles from './Header.css'
 
 function Header(props, context) {
   const navItemClass = classNames('nav-item', {
@@ -9,16 +8,16 @@ function Header(props, context) {
   })
 
   return (
-    <div className={styles.root}>
-      <nav className="navbar navbar-light bg-faded">
-        <Link to="/" className="navbar-brand">Simple IFTA</Link>
-        <ul className="nav navbar-nav">
+    <header className="navbar navbar-fixed-top">
+      <div className="container">
+        <Link to="/" className="navbar-brand">EasyIFTA</Link>
+        <ul className="nav navbar-nav pull-xs-right">
           <li className={navItemClass}>
-            <Link to="/recipes" className="nav-link">Recipes <span className="sr-only">(current)</span></Link>
+            <Link to="/login" className="nav-link">Login <span className="sr-only">(current)</span></Link>
           </li>
         </ul>
-      </nav>
-    </div>
+      </div>
+    </header>
   )
 }
 

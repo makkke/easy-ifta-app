@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-// import recipes from '../recipes/recipes.module'
+import reports from '../reports/reports.module'
 
 export default combineReducers({
-  // recipes,
+  reports,
 })

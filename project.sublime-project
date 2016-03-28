@@ -2,11 +2,15 @@
   "folders":
   [
     {
+      "path": ".",
       "folder_exclude_patterns":
       [
         "node_modules"
       ],
-      "path": "."
+      "file_exclude_patterns":
+      [
+        "app.min.css"
+      ]
     }
   ]
 }

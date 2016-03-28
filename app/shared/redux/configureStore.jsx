@@ -3,6 +3,7 @@ import { persistState } from 'redux-devtools'
 import thunk from 'redux-thunk'
 import rootReducer from './rootReducer'
 import DevTools from '../app/DevTools'
+import { getReport } from '../reports/reports.module'
 
 export function configureStore(initialState = {}) {
   let finalCreateStore
@@ -19,7 +20,7 @@ export function configureStore(initialState = {}) {
 
   const store = finalCreateStore(rootReducer, initialState)
 
-  // store.dispatch(fetchRecipes())
+  store.dispatch(getReport())
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

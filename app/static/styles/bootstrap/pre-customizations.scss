@@ -1,0 +1,28 @@
+$font-family-sans-serif: ProximaNova, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// Color
+$brand-primary: #3498db;
+
+// Navbar
+
+$navbar-padding-vertical: 0;
+$navbar-padding-horizontal: 0;
+
+// Forms
+
+$input-padding-x: 1rem;
+$input-padding-y: 1rem;
+
+@font-face {
+  font-family: ProximaNova;
+  font-weight: 400;
+
+  src: url('/fonts/proxima-nova/Proxima Nova Alt Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: ProximaNova;
+  font-weight: 300;
+
+  src: url('/fonts/proxima-nova/Proxima Nova Alt Light.otf') format('opentype');
+}

@@ -1,31 +1,34 @@
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-  devtool: 'source-map',
-
-  entry: __dirname + "/client/index.js",
+  entry: [
+    'bootstrap-loader',
+    './client/index.js',
+  ],
 
   output: {
-    path: __dirname + '/static/dist/',
+    path: `${__dirname}/static/dist/`,
     filename: 'bundle.js',
   },
-  
+
+  devtool: 'source-map',
+
   resolve: {
     extensions: ['', '.js', '.jsx'],
   },
-  
+
   module: {
     loaders: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style','css?modules'),
+        loader: ExtractTextPlugin.extract('style', 'css?modules'),
       },
       {
         test: /\.jsx*$/,
         exclude: /node_modules/,
         loader: 'babel',
-      }
+      },
     ],
   },
 
@@ -33,14 +36,14 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production'),
-      }
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
-      }
+      },
     }),
-    new ExtractTextPlugin("app.css"),
+    new ExtractTextPlugin('app.css', { allChunks: true }),
   ],
-};
+}

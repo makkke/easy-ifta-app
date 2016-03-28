@@ -1,0 +1,18 @@
+.item {
+  font-size: 1.125rem;
+  color: #7e8890;
+}
+
+.link {
+  padding-left: 0 !important;
+  font-size: 1.125rem;
+  color: #7e8890;
+}
+
+.active {
+  color: #3498db;
+}
+
+.submenu {
+  padding-left: 20px !important;
+}

@@ -28,8 +28,9 @@ import { match, RouterContext } from 'react-router'
 // Import required modules
 import routes from '../shared/app/routes'
 import { fetchComponentData } from './util/fetchData'
-import posts from './routes/post.routes'
+import reports from './routes/reports.routes'
 import serverConfig from './config'
+import moment from 'moment'
 
 // MongoDB Connection
 mongoose.connect(serverConfig.mongoURL, (error) => {
@@ -43,7 +44,7 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
 app.use(bodyParser.json({ limit: '20mb' }))
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }))
 app.use(Express.static(path.resolve(__dirname, '../static')))
-app.use('/api', posts)
+app.use('/api/reports', reports)
 
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {
@@ -55,11 +56,8 @@ const renderFullPage = (html, initialState) => {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>MERN Starter - Blog App</title>
+        <title>EasyIFTA</title>
         <link rel="stylesheet" href=${cssPath} />
-        <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'/>
-        <link rel="shortcut icon" href="http://res.cloudinary.com/hashnode/image/upload/v1455629445/static_imgs/mern/mern-favicon-circle-fill.png" type="image/png" />
-        <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
       </head>
       <body>
         <div id="root">${html}</div>
@@ -72,7 +70,7 @@ const renderFullPage = (html, initialState) => {
   `
 }
 
-// Server Side Rendering based on routes matched by React-router.
+// Server Side Rendering based on routes matched by React-router
 app.use((req, res, next) => {
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if (err) {
@@ -87,7 +85,20 @@ app.use((req, res, next) => {
       return next()
     }
 
-    const initialState = { posts: [], post: {} }
+    // load initial period
+    const period = moment().subtract(1, 'quarter')
+    const report = {
+      period: {
+        year: period.year(),
+        quarter: period.quarter(),
+      },
+    }
+
+    const initialState = {
+      reports: {
+        report,
+      },
+    }
 
     const store = configureStore(initialState)
 
@@ -111,7 +122,7 @@ app.use((req, res, next) => {
 // start app
 app.listen(serverConfig.port, (error) => {
   if (!error) {
-    console.log(`MERN is running on port: ${serverConfig.port}! Build something amazing!`) // eslint-disable-line
+    console.log(`🔥 App is running on port: ${serverConfig.port}`) // eslint-disable-line
   }
 })
 

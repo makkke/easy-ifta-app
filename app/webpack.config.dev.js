@@ -1,17 +1,20 @@
 const webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
-
-  entry: ['webpack-hot-middleware/client',
-          './client/index.js',
+  entry: [
+    'webpack-hot-middleware/client',
+    'bootstrap-loader',
+    './client/index.js',
   ],
 
   output: {
-    path: __dirname + '/dist/',
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/dist/',
   },
+
+  devtool: 'cheap-module-eval-source-map',
 
   resolve: {
     extensions: ['', '.js', '.jsx'],
@@ -21,7 +24,19 @@ module.exports = {
     loaders: [
       {
         test: /\.css$/,
-        loader: 'style!css?modules',
+        loaders: [
+          'style',
+          'css?modules&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:5]',
+        ],
+      },
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style',
+          'css?modules&importLoaders=1&sourceMap&localIdentName=[name]__[local]__[hash:base64:5]',
+          'resolve-url',
+          'sass?outputStyle=expanded&sourceMap',
+        ],
       },
       {
         test: /\.jsx*$/,
@@ -35,6 +50,7 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': {

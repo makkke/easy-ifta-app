@@ -1,9 +1,9 @@
 import React from 'react'
-import routes from '../shared/app/routes'
-import DevTools from '../shared/app/DevTools'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
+import routes from '../shared/app/routes'
+import DevTools from '../shared/app/DevTools'
 import { configureStore } from '../shared/redux/configureStore'
 
 const store = configureStore(window.__INITIAL_STATE__)
