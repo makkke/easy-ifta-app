@@ -19,24 +19,28 @@ export function create(req, res) {
 }
 
 export function show(req, res) {
-  const reportId = req.params.id
-  Report.findById(reportId).exec((err, report) => {
+  const { id } = req.params
+  Report.findById(id).exec((err, report) => {
     if (err) return res.status(status.INTERNAL_SERVER_ERROR).send(err)
     if (!report) return res.status(status.NOT_FOUND).end()
 
-    res.json(report)
+    return res.json(report)
   })
 }
 
 export function update(req, res) {
-  const reportId = req.params.id
-  Report.findById(reportId).exec((err, report) => {
+  const { id } = req.params
+  Report.findById(id).exec((err, model) => {
     if (err) return res.status(status.INTERNAL_SERVER_ERROR).send(err)
-    if (!report) return res.status(status.NOT_FOUND).end()
+    if (!model) return res.status(status.NOT_FOUND).end()
 
+    const report = model
     report.user = req.body.user
     report.company = req.body.company
-    report.save().then(
+    report.distances = req.body.distances
+    report.fuelPurchases = req.body.fuelPurchases
+
+    return report.save().then(
       () => res.json(report),
       (error) => res.status(status.INTERNAL_SERVER_ERROR).send(error)
     )

@@ -4,10 +4,6 @@ import Affix from '../Affix'
 import styles from './Sidebar.css'
 
 class Sidebar extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   state = {
     menu: [
       { id: 'client-section', title: 'About You', isActive: true },
@@ -55,7 +51,9 @@ class Sidebar extends Component {
           })
 
           if (item.submenu) {
-            return this.renderMenu(item.submenu, true)
+            return (
+              <li key={`${item.id}-submenu`}>{this.renderMenu(item.submenu, true)}</li>
+            )
           }
 
           return (

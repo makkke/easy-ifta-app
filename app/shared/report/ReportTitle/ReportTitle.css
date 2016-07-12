@@ -1,0 +1,8 @@
+.root {
+  color: var(--blue-color);
+}
+
+.root h1 {
+  margin-bottom: 40px;
+  font-weight: 300;
+}

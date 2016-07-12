@@ -1,16 +1,16 @@
 .item {
   font-size: 1.125rem;
-  color: #7e8890;
+  color: var(--grey-color);
 }
 
 .link {
   padding-left: 0 !important;
   font-size: 1.125rem;
-  color: #7e8890;
+  color: var(--grey-color);
 }
 
 .active {
-  color: #3498db;
+  color: var(--blue-color);
 }
 
 .submenu {

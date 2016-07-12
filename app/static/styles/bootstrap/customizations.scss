@@ -1,4 +1,10 @@
 // App
+:root {
+  --white-color: #fff;
+  --blue-color: #3498db;
+  --grey-color: #7e8890;
+}
+
 .section {
   position: relative;
   padding: 32px;
@@ -37,11 +43,11 @@
   padding-bottom: 21px !important;
 }
 
-.navbar {
-  min-height: 64px !important;
-  background-color: #fff;
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .1);
-}
+// .navbar {
+//   min-height: 64px !important;
+//   background-color: #fff;
+//   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .1);
+// }
 
 .navbar-brand {
   height: 64px !important;

@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import App from './App'
 import Error404Page from './Error404Page'
-import ReportPage from '../reports/ReportPage'
+import ReportPage from '../report/ReportPage'
 
 const routes = (
   <Route path="/" component={App} >

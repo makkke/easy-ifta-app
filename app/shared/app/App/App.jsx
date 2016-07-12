@@ -2,15 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Header from '../Header'
 import Sidebar from '../Sidebar'
-import styles from './App.scss'
+import styles from './App.css'
 
 class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
-  }
-
-  constructor(props, context) {
-    super(props, context)
   }
 
   render() {

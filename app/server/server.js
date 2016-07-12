@@ -87,22 +87,22 @@ app.use((req, res, next) => {
 
     // load initial period
     const period = moment().subtract(1, 'quarter')
-    const report = {
-      period: {
-        year: period.year(),
-        quarter: period.quarter(),
-      },
-    }
-
     const initialState = {
-      reports: {
-        report,
+      report: {
+        period: {
+          year: period.year(),
+          quarter: period.quarter(),
+        },
       },
+      user: {},
+      company: {},
+      distances: [],
+      fuelPurchases: [],
     }
 
     const store = configureStore(initialState)
 
-    fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
+    return fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
       .then(() => {
         const initialView = renderToString(
           <Provider store={store}>

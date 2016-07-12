@@ -3,7 +3,7 @@ import { persistState } from 'redux-devtools'
 import thunk from 'redux-thunk'
 import rootReducer from './rootReducer'
 import DevTools from '../app/DevTools'
-import { getReport } from '../reports/reports.module'
+import { getReport } from './modules/report.module'
 
 export function configureStore(initialState = {}) {
   let finalCreateStore

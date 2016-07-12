@@ -1,7 +1,8 @@
 import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
-const reportSchema = new Schema({
+
+const ReportSchema = new Schema({
   period: {
     quarter: { type: Number, required: true },
     year: { type: Number, required: true },
@@ -22,19 +23,27 @@ const reportSchema = new Schema({
     identificationNumber: { type: String, default: '' },
     referenceNumber: { type: String, default: '' },
   },
+  distances: [{
+    region: { type: String, required: true },
+    amount: { type: Number, required: true },
+  }],
+  fuelPurchases: [{
+    region: { type: String, required: true },
+    volume: { type: Number, required: true },
+  }],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 })
 
-reportSchema.pre('save', function save(next) {
+ReportSchema.pre('save', function save(next) {
   const currentDate = new Date()
   this.updatedAt = currentDate
-  if (!this.createdAt) this.createdAt = currentDate
+  this.createdAt = this.createdAt || currentDate
 
   next()
 })
 
-reportSchema.set('toJSON', {
+ReportSchema.set('toJSON', {
   transform: (doc, ret) => {
     ret.id = ret._id
     delete ret._id
@@ -42,4 +51,4 @@ reportSchema.set('toJSON', {
   },
 })
 
-export default mongoose.model('Report', reportSchema)
+export default mongoose.model('Report', ReportSchema)

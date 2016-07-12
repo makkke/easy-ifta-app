@@ -29,15 +29,15 @@ module.exports = {
           'css?modules&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:5]',
         ],
       },
-      {
-        test: /\.scss$/,
-        loaders: [
-          'style',
-          'css?modules&importLoaders=1&sourceMap&localIdentName=[name]__[local]__[hash:base64:5]',
-          'resolve-url',
-          'sass?outputStyle=expanded&sourceMap',
-        ],
-      },
+      // {
+      //   test: /\.scss$/,
+      //   loaders: [
+      //     'style',
+      //     'css?modules&importLoaders=1&sourceMap&localIdentName=[name]__[local]__[hash:base64:5]',
+      //     'resolve-url',
+      //     'sass?outputStyle=expanded&sourceMap',
+      //   ],
+      // },
       {
         test: /\.jsx*$/,
         exclude: [/node_modules/, /.+\.config.js/],
