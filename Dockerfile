@@ -1,15 +1,21 @@
-FROM node
-MAINTAINER jaga santagostino <kandros5591@gmail.com>
+FROM node:6.3.0
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN adduser \
+    --system --group \
+    --disabled-password --disabled-login \
+    --shell /bin/bash \
+    lurtz
 
-COPY package.json /usr/src/app
+WORKDIR /home/frodo/app
+
+COPY package.json /home/frodo/app
 RUN npm install
-COPY . /usr/src/app
 
-ENV NODE_ENV production
+COPY . /home/frodo/app/
+RUN chown -R frodo:frodo /home/frodo
 
-EXPOSE 8000
-CMD ["npm", "run", "bs"]
+USER frodo
 
+CMD npm run bs
+
+EXPOSE 8080

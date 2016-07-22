@@ -1,6 +1,5 @@
 export default {
-  fontFamily: 'Roboto, sans-serif',
-  hintFontFamily: 'Nanum, Helvetica, sans-serif',
+  fontFamily: 'ProximaNova, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;',
 
   fontWeight: {
     light: 300,
@@ -21,11 +20,4 @@ export default {
 
     blue: '#3498db',
   },
-
-  errorColor: '#DC143C',
-  hintColor: 'rgba(36, 37, 72, 0.38)',
-  textColor: '#808A87',
-  disabledTextColor: '#03A89E',
-  labelColor: '#0000FF',
-  focusColor: '#03a9f4',
 }

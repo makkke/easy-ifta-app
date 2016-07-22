@@ -21,7 +21,7 @@ function ReportTitle(props) {
   const styles = getStyles()
 
   return (
-    <div className={styles.root}>
+    <div style={styles.root}>
       <h1 style={styles.title}>IFTA {periodString} Tax Return</h1>
     </div>
   )

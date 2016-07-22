@@ -1,0 +1,24 @@
+@font-face {
+  font-family: ProximaNova;
+  font-weight: 400;
+
+  src: url('/fonts/proxima-nova/Proxima Nova Alt Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: ProximaNova;
+  font-weight: 300;
+
+  src: url('/fonts/proxima-nova/Proxima Nova Alt Light.otf') format('opentype');
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: ProximaNova, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+}

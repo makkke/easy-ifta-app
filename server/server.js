@@ -47,7 +47,7 @@ app.use(compression())
 app.use(bodyParser.json({ limit: '20mb' }))
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }))
 app.use(Express.static(path.resolve(__dirname, '../dist')))
-// app.use(Express.static(path.resolve(__dirname, '../client/assets')))
+app.use(Express.static(path.resolve(__dirname, '../client/assets')))
 app.use('/api/reports', reports)
 
 // Render Initial HTML
