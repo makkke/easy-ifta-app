@@ -1,16 +1,19 @@
 {
-  "folders":
-  [
-    {
-      "path": ".",
-      "folder_exclude_patterns":
-      [
-        "node_modules"
-      ],
-      "file_exclude_patterns":
-      [
-        "app.min.css"
-      ]
-    }
-  ]
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"app.min.css",
+				"npm-debug.log"
+			],
+			"folder_exclude_patterns":
+			[
+				"node_modules",
+				".nyc_output",
+				"coverage"
+			],
+			"path": "."
+		}
+	]
 }
