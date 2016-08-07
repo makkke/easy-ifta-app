@@ -4,10 +4,6 @@ machine:
   services:
     - docker
 
-dependencies:
-  override:
-    - docker build --tag=vivanov1410/simple-ifta-app .
-
 test:
   override:
     - npm run build:server
