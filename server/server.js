@@ -35,6 +35,7 @@ import reports from './routes/reports.routes'
 import serverConfig from './config'
 
 // MongoDB Connection
+mongoose.Promise = global.Promise
 mongoose.connect(serverConfig.mongo.url, (error) => {
   if (error) {
     console.error('Please make sure Mongodb is installed and running!') // eslint-disable-line no-console
