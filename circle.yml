@@ -5,7 +5,7 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build --tag=vivanov1410/simple-ifta-app --file=build-pipeline/build/Dockerfile .
+    - docker build --tag=vivanov1410/simple-ifta-app .
 
 deployment:
   hub:
