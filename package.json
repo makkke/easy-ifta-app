@@ -4,21 +4,23 @@
   "description": "App for Simple IFTA",
   "scripts": {
     "test": "cross-env NODE_ENV=test PORT=8080 MONGO_URL=mongodb://localhost:27017/mern-test node_modules/.bin/nyc node --harmony-proxies node_modules/.bin/ava",
+    "test:unit": "ava",
     "watch:test": "npm run test -- --watch",
     "cover": "nyc npm run test",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "start:dev": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=development PORT=8080 nodemon index.js",
     "start:prod": "cross-env NODE_ENV=production node index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
     "bs": "npm run clean && npm run build && npm run build:server && npm run start:prod",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
+    "build": "npm run build:server && npm run build:client",
+    "build:client": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "build:server": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=production webpack --config webpack.config.server.js",
     "clean": "rimraf dist",
     "slate": "rimraf node_modules && npm install",
     "lint": "eslint client server"
   },
   "pre-commit": [
-    "lint",
-    "test"
+    "lint"
   ],
   "repository": {
     "type": "git",
