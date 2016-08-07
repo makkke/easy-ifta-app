@@ -19,3 +19,5 @@ export function sequence(items, consumer) {
 
   return runner()
 }
+
+export default sequence

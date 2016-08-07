@@ -13,3 +13,5 @@ export function fetchComponentData(store, components, params) {
 
   return sequence(needs, need => store.dispatch(need(params, store.getState())))
 }
+
+export default fetchComponentData

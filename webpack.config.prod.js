@@ -39,7 +39,10 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?localIdentName=[hash:base64]&modules&importLoaders=1!postcss-loader'),
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader?localIdentName=[hash:base64]&modules&importLoaders=1!postcss-loader'
+        }),
       }, {
         test: /\.css$/,
         include: /node_modules/,
@@ -61,6 +64,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
+        CLIENT: JSON.stringify(true),
         'NODE_ENV': JSON.stringify('production'),
       }
     }),
@@ -69,7 +73,10 @@ module.exports = {
       minChunks: Infinity,
       filename: 'vendor.js',
     }),
-    new ExtractTextPlugin('app.[chunkhash].css', { allChunks: true }),
+    new ExtractTextPlugin({
+      filename: 'app.[chunkhash].css',
+      allChunks: true,
+    }),
     new ManifestPlugin({
       basePath: '/',
     }),
