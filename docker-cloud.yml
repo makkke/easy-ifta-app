@@ -1,10 +1,8 @@
-web:
-  image: 'vivanov1410/simple-ifta-app'
+app:
+  image: vivanov1410/simple-ifta-app
   autoredeploy: true
-  links:
-    - mongo:db
+  environment:
+    NODE_ENV: production
+    MONGO_URL: mongodb://admin:admin@ds145245.mlab.com:45245/simple-ifta-production
   ports:
-    - '80:80'
-
-mongo:
-  image: 'mongo'
+    - 80:8080
