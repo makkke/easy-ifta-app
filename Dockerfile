@@ -17,7 +17,7 @@ COPY . $HOME/app/
 RUN chown -R lurtz:lurtz $HOME/*
 USER lurtz
 
-RUN npm build
+RUN npm run build
 
 CMD npm run start
 
