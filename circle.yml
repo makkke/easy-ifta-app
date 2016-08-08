@@ -10,7 +10,7 @@ dependencies:
 test:
   override:
     - docker run --rm vivanov1410/simple-ifta-app npm test
-    - docker run -p 8080:8080 vivanov1410/simple-ifta-app; sleep 10
+    - docker run -d -p 8080:8080 vivanov1410/simple-ifta-app; sleep 10
     - curl --retry 10 --retry-delay 5 -v http://localhost:8080
 
 deployment:
