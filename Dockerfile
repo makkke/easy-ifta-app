@@ -17,6 +17,8 @@ COPY . $HOME/app/
 RUN chown -R lurtz:lurtz $HOME/*
 USER lurtz
 
-CMD npm run bs
+RUN npm build
+
+CMD npm run start
 
 EXPOSE 8080
