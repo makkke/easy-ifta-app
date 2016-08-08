@@ -3,12 +3,26 @@ import compression from 'compression'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import path from 'path'
+import { Provider } from 'react-redux'
+import React from 'react'
+import { renderToString } from 'react-dom/server'
+import { match, RouterContext } from 'react-router'
+import Helmet from 'react-helmet'
 
 // Webpack Requirements
 import webpack from 'webpack'
-import config from '../webpack.config.dev'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
+import config from '../webpack.config.dev'
+
+// React And Redux Setup
+import { configureStore } from '../client/store'
+
+// Import required modules
+import routes from '../client/routes'
+import { fetchComponentData } from './util/fetchData'
+import reports from './routes/reports.routes'
+import serverConfig from './config'
 
 // Initialize the Express App
 const app = new Express()
@@ -20,21 +34,8 @@ if (process.env.NODE_ENV === 'development') {
   app.use(webpackHotMiddleware(compiler))
 }
 
-// React And Redux Setup
-import { configureStore } from '../client/store'
-import { Provider } from 'react-redux'
-import React from 'react'
-import { renderToString } from 'react-dom/server'
-import { match, RouterContext } from 'react-router'
-import Helmet from 'react-helmet'
-
-// Import required modules
-import routes from '../client/routes'
-import { fetchComponentData } from './util/fetchData'
-import reports from './routes/reports.routes'
-import serverConfig from './config'
-
 // MongoDB Connection
+mongoose.Promise = global.Promise
 mongoose.connect(serverConfig.mongo.url, (error) => {
   if (error) {
     console.error('Please make sure Mongodb is installed and running!') // eslint-disable-line no-console
@@ -108,21 +109,6 @@ app.use((req, res, next) => {
     if (!renderProps) {
       return next()
     }
-
-    // load initial period
-    // const period = moment().subtract(1, 'quarter')
-    // const initialState = {
-    //   report: {
-    //     period: {
-    //       year: period.year(),
-    //       quarter: period.quarter(),
-    //     },
-    //   },
-    //   user: {},
-    //   company: {},
-    //   distances: [],
-    //   fuelPurchases: [],
-    // }
 
     const store = configureStore()
 

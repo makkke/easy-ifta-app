@@ -35,9 +35,10 @@ class FuelPurchases extends Component {
     this.setState({ volume })
   }
 
-  handleAddButtonClick = () => {
-    const { region, volume } = this.state
+  handleFormSubmit = (e) => {
+    e.preventDefault()
 
+    const { region, volume } = this.state
     this.props.create({ region, volume })
     this.props.save()
     this.reset()
@@ -57,27 +58,28 @@ class FuelPurchases extends Component {
 
     return (
       <Section id="fuel-purchases-section" title="Fuel Purchases">
-        <div className="form-group row">
-          <div className="col-xs-6">
-            <RegionSelect region={region} onChange={this.handleRegionChange} />
+        <form className="row" onSubmit={this.handleFormSubmit}>
+          <div className="form-group">
+            <div className="col-xs-6">
+              <RegionSelect region={region} onChange={this.handleRegionChange} />
+            </div>
+            <div className="col-xs-4">
+              <input
+                type="number"
+                className="form-control"
+                placeholder={isProvince(region) ? 'Liters' : 'Gallons'}
+                value={this.state.volume}
+                onChange={this.handleVolumeChange}
+              />
+            </div>
+            <div className="col-xs-2">
+              <button
+                type="submit"
+                className="btn btn-success btn-lg"
+              >Add</button>
+            </div>
           </div>
-          <div className="col-xs-4">
-            <input
-              type="number"
-              className="form-control"
-              placeholder={isProvince(region) ? 'Liters' : 'Gallons'}
-              value={this.state.volume}
-              onChange={this.handleVolumeChange}
-            />
-          </div>
-          <div className="col-xs-2">
-            <button
-              type="button"
-              className="btn btn-success btn-lg"
-              onClick={this.handleAddButtonClick}
-            >Add</button>
-          </div>
-        </div>
+        </form>
         <div className="row">
           <div className="col-xs-12">
             <FuelPurchaseList

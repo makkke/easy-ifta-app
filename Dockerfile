@@ -1,20 +1,21 @@
-FROM node:6.3.0
+FROM node:6.3.1
 
-RUN adduser \
-    --system --group \
-    --disabled-password --disabled-login \
-    --shell /bin/bash \
-    lurtz
+ENV NPM_CONFIG_LOGLEVEL error
 
-WORKDIR /home/frodo/app
+RUN useradd --user-group --create-home --shell /bin/false lurtz
+ENV HOME=/home/lurtz
 
-COPY package.json /home/frodo/app
+COPY package.json $HOME/app/
+RUN chown -R lurtz:lurtz $HOME/*
+
+USER lurtz
+WORKDIR $HOME/app
 RUN npm install
 
-COPY . /home/frodo/app/
-RUN chown -R frodo:frodo /home/frodo
-
-USER frodo
+USER root
+COPY . $HOME/app/
+RUN chown -R lurtz:lurtz $HOME/*
+USER lurtz
 
 CMD npm run bs
 
