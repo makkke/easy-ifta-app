@@ -9,7 +9,8 @@ dependencies:
 
 test:
   override:
-    - docker run -d vivanov1410/simple-ifta-app npm test
+    - docker run --rm vivanov1410/simple-ifta-app npm test
+    - docker run --rm vivanov1410/simple-ifta-app npm run build
 
 deployment:
   hub:

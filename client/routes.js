@@ -2,7 +2,7 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
-import App from './modules/App/App'
+import App from './modules/app/App'
 
 // require.ensure polyfill for node
 if (typeof require.ensure !== 'function') {

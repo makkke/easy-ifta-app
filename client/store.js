@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 
-import DevTools from './modules/App/components/DevTools'
+import DevTools from './modules/app/components/DevTools'
 import rootReducer from './reducers'
 import { getReport } from './modules/report/report.module'
 
