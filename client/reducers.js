@@ -6,10 +6,14 @@ import company from './modules/report/company.module'
 import distances from './modules/report/distances.module'
 import fuelPurchases from './modules/report/fuelPurchases.module'
 
+import auth from './modules/auth/auth.module'
+
 export default combineReducers({
   report,
   user,
   company,
   distances,
   fuelPurchases,
+
+  auth,
 })

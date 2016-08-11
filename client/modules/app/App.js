@@ -21,6 +21,7 @@ class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
+    route: PropTypes.object.isRequired,
   }
 
   constructor(props) {
@@ -34,6 +35,13 @@ class App extends Component {
 
   render() {
     const styles = getStyles()
+
+    let children = null
+    if (this.props.children) {
+      children = React.cloneElement(this.props.children, {
+        auth: this.props.route.auth, // sends auth instance from route to children
+      })
+    }
 
     return (
       <div>
@@ -58,7 +66,7 @@ class App extends Component {
           <div className="container" style={styles.root}>
             <div className="row">
               <Sidebar />
-              {this.props.children}
+              {children}
             </div>
           </div>
         </div>

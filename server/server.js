@@ -8,6 +8,8 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
 import Helmet from 'react-helmet'
+import passport from 'passport'
+import httpStatus from 'http-status'
 
 // Webpack Requirements
 import webpack from 'webpack'
@@ -21,8 +23,8 @@ import { configureStore } from '../client/store'
 // Import required modules
 import routes from '../client/routes'
 import { fetchComponentData } from './util/fetchData'
-import reports from './routes/reports.routes'
 import serverConfig from './config'
+import apiRoutes from './routes'
 
 // Initialize the Express App
 const app = new Express()
@@ -49,7 +51,21 @@ app.use(bodyParser.json({ limit: '20mb' }))
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }))
 app.use(Express.static(path.resolve(__dirname, '../dist')))
 app.use(Express.static(path.resolve(__dirname, '../client/assets')))
-app.use('/api/reports', reports)
+
+// mount all routes on /api path
+require('./passport') // eslint-disable-line
+app.use(passport.initialize())
+app.use('/api', apiRoutes)
+
+// catch unauthorised errors
+app.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res.status(httpStatus.UNAUTHORIZED).json({ message: `${err.name}: ${err.message}` })
+    return
+  }
+
+  next()
+})
 
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {

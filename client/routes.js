@@ -20,6 +20,13 @@ if (process.env.NODE_ENV !== 'production') {
   require('./modules/report/ReportPage')
 }
 
+// onEnter callback to validate authentication in private routes
+// const requireAuth = (nextState, replace) => {
+//   if (!auth.isLoggedIn()) {
+//     replace({ pathname: '/login' })
+//   }
+// }
+
 // react-router setup with code-splitting
 // More info: http://blog.mxstbr.com/2016/01/react-apps-with-pages/
 export default (
@@ -28,6 +35,14 @@ export default (
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(null, require('./modules/report/ReportPage').default)
+        })
+      }}
+    />
+    <Route
+      path="login"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/auth/LoginPage').default)
         })
       }}
     />
