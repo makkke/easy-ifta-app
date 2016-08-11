@@ -162,7 +162,7 @@ app.use((req, res, next) => {
 // start app
 app.listen(serverConfig.port, (error) => {
   if (!error) {
-    console.log(`🔥 App is running on port: ${serverConfig.port}`) // eslint-disable-line
+    console.log(`🔥  App is running on port: ${serverConfig.port}`) // eslint-disable-line
   }
 })
 

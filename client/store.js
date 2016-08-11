@@ -3,7 +3,6 @@ import thunk from 'redux-thunk'
 
 import DevTools from './modules/app/components/DevTools'
 import rootReducer from './reducers'
-import { getReport } from './modules/report/report.module'
 
 export function configureStore(initialState = {}) {
   // Middleware and store enhancers
@@ -17,8 +16,6 @@ export function configureStore(initialState = {}) {
   }
 
   const store = createStore(rootReducer, initialState, compose(...enhancers))
-
-  store.dispatch(getReport())
 
   // For hot reloading reducers
   if (module.hot) {

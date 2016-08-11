@@ -1,12 +1,21 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+
 import App from './App'
 import { configureStore } from './store'
+import { loginSuccess } from './modules/auth/auth.module'
 
 // Initialize store
 const store = configureStore(window.__INITIAL_STATE__)
 const mountApp = document.getElementById('root')
+
+// Login if token exists in local storage
+// store.dispatch(getReport())
+const token = localStorage.getItem('token')
+if (token) {
+  store.dispatch(loginSuccess(token))
+}
 
 render(
   <AppContainer>
