@@ -36,13 +36,6 @@ class App extends Component {
   render() {
     const styles = getStyles()
 
-    let children = null
-    if (this.props.children) {
-      children = React.cloneElement(this.props.children, {
-        auth: this.props.route.auth, // sends auth instance from route to children
-      })
-    }
-
     return (
       <div>
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
@@ -66,7 +59,7 @@ class App extends Component {
           <div className="container" style={styles.root}>
             <div className="row">
               <Sidebar />
-              {children}
+              {this.props.children}
             </div>
           </div>
         </div>

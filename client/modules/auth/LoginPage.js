@@ -10,13 +10,13 @@ class LoginPage extends Component {
   state = {}
 
   render() {
-    const { auth } = this.props
+    // const { auth } = this.props
 
     return (
       <div>
         <h2>Login</h2>
         <ButtonToolbar>
-          <Button bsStyle="primary" onClick={auth.login.bind(this)}>Login</Button>
+          <Button bsStyle="primary">Login</Button>
         </ButtonToolbar>
       </div>
     )
