@@ -87,6 +87,19 @@ const renderFullPage = (html, initialState) => {
 
         ${process.env.NODE_ENV === 'production' ? `<link rel='stylesheet' href='${assetsManifest['/app.css']}' />` : ''}
         <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+        <style>
+          @font-face {
+            font-family: ProximaNova;
+            src: url('/fonts/proxima-nova/ProximaNovaAltRegular.otf') format('opentype');
+            font-weight: 400;
+          }
+
+          @font-face {
+            font-family: ProximaNova;
+            src: url('/fonts/proxima-nova/ProximaNovaAltLight.otf') format('opentype');
+            font-weight: 300;
+          }
+        </style>
       </head>
       <body>
         <div id="root">${html}</div>
