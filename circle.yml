@@ -4,12 +4,21 @@ machine:
 
 dependencies:
   override:
-    - docker info
-    - docker build --tag=vivanov1410/simple-ifta-app --file=build-pipeline/build/Dockerfile .
+    - docker login --email=$DOCKER_EMAIL --username=$DOCKER_USER --password=$DOCKER_PASSWORD
+    - docker build --tag=vivanov1410/simple-ifta-app:${CIRCLE_SHA1} .
+
+test:
+  override:
+    - docker run --rm vivanov1410/simple-ifta-app:${CIRCLE_SHA1} npm test
+    - docker run -d -p 8080:8080 vivanov1410/simple-ifta-app:${CIRCLE_SHA1}; sleep 10
+    - curl --retry 10 --retry-delay 5 -v http://localhost:8080
 
 deployment:
   hub:
     branch: master
     commands:
-      - docker login --email=$DOCKER_EMAIL --username=$DOCKER_USER --password=$DOCKER_PASS
+      # push image to Dockerhub
+      # - VERSION=$(node -p -e "require('./package.json').version") && docker tag vivanov1410/simple-ifta-app:${CIRCLE_SHA1} vivanov1410/simple-ifta-app:${VERSION}
+      - docker tag -f vivanov1410/simple-ifta-app:${CIRCLE_SHA1} vivanov1410/simple-ifta-app
+      - docker rmi vivanov1410/simple-ifta-app:${CIRCLE_SHA1}
       - docker push vivanov1410/simple-ifta-app

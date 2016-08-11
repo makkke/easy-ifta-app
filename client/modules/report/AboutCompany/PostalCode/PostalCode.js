@@ -28,12 +28,14 @@ class PostalCode extends Component {
 
     // required
     if (postalCode.length === 0) {
-      return this.setState({ isValid: false })
+      this.setState({ isValid: false })
+      return
     }
 
     // max 7 chars
     if (postalCode.length > 7) {
-      return this.setState({ isValid: false })
+      this.setState({ isValid: false })
+      return
     }
 
     this.setState({ isValid: true })

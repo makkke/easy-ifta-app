@@ -1,43 +1,45 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 
-class Address extends Component {
+class City extends Component {
   static propTypes = {
-    address: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
     onChange: PropTypes.func,
   }
 
   state = {
-    address: '',
+    city: '',
     isValid: true,
   }
 
   componentWillReceiveProps(nextProps) {
-    const { address } = nextProps
-    this.setState({ address })
+    const { city } = nextProps
+    this.setState({ city })
   }
 
   handleChange = (e) => {
-    const address = e.target.value.trim().substring(0, 60)
-    this.setState({ address })
+    const city = e.target.value.trim().substring(0, 50)
+    this.setState({ city })
   }
 
   handleBlur = () => {
-    const { address } = this.state
+    const { city } = this.state
 
     // required
-    if (address.length === 0) {
-      return this.setState({ isValid: false })
+    if (city.length === 0) {
+      this.setState({ isValid: false })
+      return
     }
 
-    // max 60 chars
-    if (address.length > 60) {
-      return this.setState({ isValid: false })
+    // max 50 chars
+    if (city.length > 50) {
+      this.setState({ isValid: false })
+      return
     }
 
     this.setState({ isValid: true })
 
-    this.props.onChange({ address })
+    this.props.onChange({ city })
   }
 
   render() {
@@ -49,9 +51,9 @@ class Address extends Component {
       <input
         type="text"
         className={className}
-        placeholder="Address"
-        value={this.state.address}
-        maxLength="60"
+        placeholder="City"
+        value={this.state.city}
+        maxLength="50"
         onChange={this.handleChange}
         onBlur={this.handleBlur}
       />
@@ -59,4 +61,4 @@ class Address extends Component {
   }
 }
 
-export default Address
+export default City

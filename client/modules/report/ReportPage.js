@@ -76,7 +76,7 @@ class ReportPage extends Component {
 
   render() {
     return (
-      <form id="main-content" className="col-xs-9" noValidate>
+      <div id="main-content" className="col-xs-9" noValidate>
         <ReportTitle period={this.props.report.period} />
         <AboutYouSection
           aboutYou={this.state.aboutYou}
@@ -88,7 +88,7 @@ class ReportPage extends Component {
         <DistanceTraveled save={this.props.saveReportOnServer} />
         <FuelPurchases save={this.props.saveReportOnServer} />
         <Summary />
-      </form>
+      </div>
     )
   }
 }

@@ -17,7 +17,7 @@ function getStyles() {
   return styles
 }
 
-export class App extends Component {
+class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,

@@ -1,16 +1,8 @@
-web:
+app:
   build: .
-  links:
-   - db
+  command: npm run start:dev
   ports:
-   - "80:8000"
+   - 8080:8080
   volumes:
-   - .:/usr/src/app/
-  environment:
-   NODE_ENV: production
-   MONGO_URL: mongodb://db:27017/mern-starter
-db:
-  image: mongo:latest
-  ports:
-   - "27017:27017"
-
+    - .:/home/lurtz/app
+    - /home/lurtz/app/node_modules

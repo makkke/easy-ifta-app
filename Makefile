@@ -1,5 +1,8 @@
 service := app
 
+build:
+	@docker-compose build
+
 # Builds, (re)creates, starts, and attaches to containers for a service
 start:
 	@docker-compose up -d
@@ -33,14 +36,6 @@ status:
 
 # Displays log output from services. Default is main service
 logs:
-	@docker-compose logs ${service}
-
-# Runs unit tests on service
-test\:unit:
-	@docker-compose run --rm -e NODE_ENV=test api ./node_modules/.bin/gulp test:unit
-
-# Runs integration tests on service
-test\:integration:
-	@docker-compose run --rm -e NODE_ENV=test api ./node_modules/.bin/gulp test:integration
+	@docker-compose logs -f ${service}
 
 .PHONY: start stop restart clean kill pull status logs
