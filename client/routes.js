@@ -3,6 +3,8 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
 import App from './modules/app/App'
+import Main from './modules/app/Main'
+import Registration from './modules/auth/Registration'
 
 // require.ensure polyfill for node
 if (typeof require.ensure !== 'function') {
@@ -31,20 +33,24 @@ if (process.env.NODE_ENV !== 'production') {
 // More info: http://blog.mxstbr.com/2016/01/react-apps-with-pages/
 export default (
   <Route path="/" component={App}>
-    <IndexRoute
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/report/ReportPage').default)
-        })
-      }}
-    />
-    <Route
-      path="login"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/auth/LoginPage').default)
-        })
-      }}
-    />
+    <Route component={Main}>
+      <IndexRoute
+        getComponent={(nextState, cb) => {
+          require.ensure([], require => {
+            cb(null, require('./modules/report/ReportPage').default)
+          })
+        }}
+      />
+    </Route>
+    <Route component={Registration}>
+      <Route
+        path="login"
+        getComponent={(nextState, cb) => {
+          require.ensure([], require => {
+            cb(null, require('./modules/auth/LoginPage').default)
+          })
+        }}
+      />
+    </Route>
   </Route>
 )
