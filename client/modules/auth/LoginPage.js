@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap'
-import theme from '../../components/styles/theme'
+// import theme from '../../components/styles/theme'
 
-function getStyle() {
-  return {}
-}
+// function getStyle() {
+//   return {}
+// }
 
 class LoginPage extends Component {
   static propTypes = {
