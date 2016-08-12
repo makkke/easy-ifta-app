@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+import api from '../../utils/api'
 
 // ------------------------------------
 // Constants
@@ -6,6 +6,10 @@ import fetch from 'isomorphic-fetch'
 const LOGIN_REQUEST = 'simple-ifta/auth/LOGIN_REQUEST'
 const LOGIN_SUCCESS = 'simple-ifta/auth/LOGIN_SUCCESS'
 const LOGIN_FAILURE = 'simple-ifta/auth/LOGIN_FAILURE'
+
+const SIGNUP_REQUEST = 'simple-ifta/auth/SIGNUP_REQUEST'
+const SIGNUP_SUCCESS = 'simple-ifta/auth/SIGNUP_SUCCESS'
+const SIGNUP_FAILURE = 'simple-ifta/auth/LOGIN_FAILURE'
 
 // ------------------------------------
 // Actions
@@ -30,28 +34,46 @@ export const login = (email, password) => {
   return (dispatch) => {
     dispatch(loginRequest())
 
-    return fetch('/api/auth/login', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then(response => response.json())
-      .then(response => {
-        try {
-          return dispatch(loginSuccess(response.token))
-        } catch (err) {
-          return dispatch(loginFailure(err))
-        }
+    return api('auth/login', 'POST', { email, password })
+      .then(response => dispatch(loginSuccess(response.token)))
+      .catch(err => {
+        dispatch(loginFailure(err))
+        throw err
       })
-      .catch(err => dispatch(loginFailure(err)))
+  }
+}
+
+// Signup
+export const signupRequest = () => ({
+  type: SIGNUP_REQUEST,
+})
+
+export const signupSuccess = (token) => ({
+  type: SIGNUP_SUCCESS,
+  token,
+})
+
+export const signupFailure = (error) => ({
+  type: SIGNUP_FAILURE,
+  error,
+})
+
+export const signup = (user) => {
+  return (dispatch) => {
+    dispatch(signupRequest())
+
+    return api('auth/signup', 'POST', user)
+      .then(response => dispatch(signupSuccess(response.token)))
+      .catch(err => {
+        dispatch(signupFailure(err))
+        throw err
+      })
   }
 }
 
 export const actions = {
   login,
+  signup,
 }
 
 // ------------------------------------
@@ -80,6 +102,40 @@ const ACTION_HANDLERS = {
   },
 
   [LOGIN_FAILURE]: (state) => {
+    if (process.env.CLIENT) {
+      localStorage.removeItem('token')
+    }
+
+    return {
+      ...state,
+      isAuthenticated: false,
+      isAuthenticating: false,
+      token: null,
+    }
+  },
+
+  [SIGNUP_REQUEST]: (state) => {
+    return {
+      ...state,
+      isAuthenticating: true,
+    }
+  },
+
+  [SIGNUP_SUCCESS]: (state, action) => {
+    const { token } = action
+    if (process.env.CLIENT) {
+      localStorage.setItem('token', token)
+    }
+
+    return {
+      ...state,
+      isAuthenticated: true,
+      isAuthenticating: false,
+      token,
+    }
+  },
+
+  [SIGNUP_FAILURE]: (state) => {
     if (process.env.CLIENT) {
       localStorage.removeItem('token')
     }
