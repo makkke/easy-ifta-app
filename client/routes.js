@@ -5,6 +5,7 @@ import { Route, IndexRoute } from 'react-router'
 import App from './modules/app/App'
 import Main from './modules/app/Main'
 import Registration from './modules/auth/Registration'
+import requireAuthentication from './components/AuthenticatedComponent'
 
 // require.ensure polyfill for node
 if (typeof require.ensure !== 'function') {
@@ -22,18 +23,11 @@ if (process.env.NODE_ENV !== 'production') {
   require('./modules/report/ReportPage')
 }
 
-// onEnter callback to validate authentication in private routes
-// const requireAuth = (nextState, replace) => {
-//   if (!auth.isLoggedIn()) {
-//     replace({ pathname: '/login' })
-//   }
-// }
-
 // react-router setup with code-splitting
 // More info: http://blog.mxstbr.com/2016/01/react-apps-with-pages/
 export default (
   <Route path="/" component={App}>
-    <Route component={Main}>
+    <Route component={requireAuthentication(Main)}>
       <IndexRoute
         getComponent={(nextState, cb) => {
           require.ensure([], require => {
