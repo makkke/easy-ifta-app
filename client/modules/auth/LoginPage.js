@@ -9,11 +9,12 @@ import { actions } from './auth.module'
 
 function getStyles() {
   return {
-    modal: {
+    form: {
       maxWidth: 500,
-      padding: 40,
+      marginTop: 120,
       marginLeft: 'auto',
       marginRight: 'auto',
+      padding: 40,
       borderRadius: 3,
       borderWidth: 1,
       boxSizing: 'border-box',
@@ -22,11 +23,38 @@ function getStyles() {
       boxShadow: '0 2px 8px rgba(31,45,61,0.05)',
       backgroundColor: theme.colors.white,
     },
+    header: {
+      marginTop: 0,
+      marginBottom: 20,
+      textAlign: 'center',
+      fontSize: theme.fontSize.h3,
+      color: theme.colors.black,
+    },
+    subheader: {
+      marginTop: 0,
+      marginBottom: 40,
+      textAlign: 'center',
+      fontSize: theme.fontSize.h2,
+      color: theme.colors.darkGrey,
+    },
     inputLarge: {
       height: 50,
       width: '100%',
       fontSize: 16,
       boxSizing: 'border-box',
+    },
+    forgotPassword: {
+      marginTop: 10,
+      marginBottom: 20,
+      textAlign: 'right',
+      fontSize: theme.fontSize.normal,
+      color: theme.colors.darkGrey,
+    },
+    button: {
+      height: 50,
+      backgroundColor: theme.colors.green,
+      borderColor: theme.colors.green,
+      fontSize: theme.fontSize.normal,
     },
     subtext: {
       marginTop: 40,
@@ -34,6 +62,12 @@ function getStyles() {
       textAlign: 'center',
       fontWeight: theme.fontWeight.light,
       color: theme.colors.darkGrey,
+    },
+    subtextLink: {
+      paddingLeft: 5,
+      outline: 'none',
+      color: theme.colors.blue,
+      textDecoration: 'none',
     },
   }
 }
@@ -66,23 +100,23 @@ class LoginPage extends Component {
 
     return (
       <div>
-        <form style={styles.modal}>
-          <div>
+        <form style={styles.form}>
+          <div style={styles.header}>
             <h3>Welcome back</h3>
           </div>
-          <div>
+          <div style={styles.subheader}>
             <span>Sign into your account here:</span>
           </div>
           <TextInput style={styles.inputLarge} placeholder="Email" />
           <TextInput style={styles.inputLarge} placeholder="Password" type="password" />
-          <div>
+          <div style={styles.forgotPassword}>
             <span>Forgot your password?</span>
           </div>
-          <Button bsStyle="primary" bsSize="large" block>Sign In</Button>
+          <Button style={styles.button} bsStyle="primary" bsSize="large" block>Sign In</Button>
         </form>
         <div style={styles.subtext}>
           <span>Dont have an account?</span>
-          <Button bsStyle="link">Sign Up</Button>
+          <Button style={styles.subtextLink} bsStyle="link">Sign Up</Button>
         </div>
       </div>
     )

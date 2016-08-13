@@ -13,7 +13,6 @@ function Registration(props) {
 
   return (
     <div style={styles.root}>
-      <h1>Registration</h1>
       {props.children}
     </div>
   )
