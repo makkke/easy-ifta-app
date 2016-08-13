@@ -17,7 +17,7 @@ function getStyles() {
       borderRadius: 3,
       borderWidth: 1,
       boxSizing: 'border-box',
-      borderColor: '#e0e6ed',
+      borderColor: theme.colors.lightGrey,
       borderStyle: 'solid',
       boxShadow: '0 2px 8px rgba(31,45,61,0.05)',
       backgroundColor: theme.colors.white,
@@ -33,7 +33,7 @@ function getStyles() {
       marginBottom: 0,
       textAlign: 'center',
       fontWeight: theme.fontWeight.light,
-      color: '#8492A6',
+      color: theme.colors.darkGrey,
     },
   }
 }
