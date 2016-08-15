@@ -18,4 +18,8 @@ export default {
   jwt: {
     secret: process.env.JWT_SECRET || 'ilovejameswoods',
   },
+
+  api: {
+    url: process.env.API_URL || '/api',
+  },
 }
