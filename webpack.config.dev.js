@@ -31,6 +31,7 @@ module.exports = {
       'client',
       'node_modules',
     ],
+    packageAlias: 'browser',
   },
 
   module: {
@@ -45,7 +46,7 @@ module.exports = {
         loaders: ['style-loader', 'css-loader'],
       }, {
         test: /\.jsx*$/,
-        exclude: [/node_modules/, /.+\.config.js/],
+        exclude: [/node_modules/, /.+\.config.js/, /joi-browser/],
         loader: 'babel',
       }, {
         test: /\.(jpe?g|gif|png|svg)$/i,

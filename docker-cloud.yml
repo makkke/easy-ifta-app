@@ -1,14 +1,14 @@
-lb:
+simple-ifta-lb:
   image: tutum/haproxy:latest
   restart: always
   links:
-    - app
+    - simple-ifta-app
   ports:
     - 80:80
   roles:
     - global
 
-app:
+simple-ifta-app:
   image: vivanov1410/simple-ifta-app
   autoredeploy: true
   restart: always
@@ -16,6 +16,5 @@ app:
   deployment_strategy: high_availability
   environment:
     - NODE_ENV=production
-    - MONGO_URL=mongodb://admin:admin@ds145245.mlab.com:45245/simple-ifta-production
   ports:
     - 8080

@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
+import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
+import Joi from 'joi'
 
 import theme from '../../components/styles/theme'
 import TextInput from '../../components/TextInput/TextInput'
@@ -74,7 +76,6 @@ function getStyles() {
 
 class LoginPage extends Component {
   static propTypes = {
-    auth: PropTypes.object,
     actions: PropTypes.object.isRequired,
     location: PropTypes.object,
   }
@@ -83,52 +84,118 @@ class LoginPage extends Component {
     router: React.PropTypes.object,
   }
 
-  state = {}
+  state = {
+    email: '',
+    password: '',
+    isProcessing: false,
+    errors: {},
+  }
 
-  handleSubmit = (event) => {
+  handleEmailChange = (event) => {
+    const email = event.target.value.trim()
+    const { errors } = this.state
+    errors.email = null
+    errors.login = false
+
+    this.setState({ email, errors })
+  }
+
+  handlePasswordChange = (event) => {
+    const password = event.target.value.trim()
+    const { errors } = this.state
+    errors.password = null
+    errors.login = false
+
+    this.setState({ password, errors })
+  }
+
+  handleSubmit = async (event) => {
     event.preventDefault()
 
-    const redirect = this.props.location.query.next || '/'
-    this.props.actions
-      .login('slava.eth@gmail.com', 'test')
-      .then(() => this.context.router.push(redirect))
+    // validate
+    const schema = Joi.object({
+      email: Joi.string().email().required().label('Email'),
+      password: Joi.string().required().label('Password'),
+    })
+    const result = Joi.validate(this.state, schema, { allowUnknown: true })
+    if (result.error) {
+      const path = result.error.details[0].path
+      this.setState({ errors: { [path]: result.error.details[0].message } })
+      return
+    }
+
+    // login
+    try {
+      this.setState({ isProcessing: true })
+      await this.props.actions.login(this.state.email, this.state.password)
+      const redirect = this.props.location.query.next || '/'
+      this.context.router.push(redirect)
+    } catch (e) {
+      this.setState({ errors: { login: true }, isProcessing: false })
+    }
   }
 
   render() {
     const styles = getStyles()
-    // const { auth } = this.props
+    const { isProcessing } = this.state
+    const buttonText = isProcessing ? 'Signing in...' : 'Sign in'
 
     return (
       <div>
-        <form style={styles.form}>
+        <form style={styles.form} onSubmit={this.handleSubmit}>
           <div style={styles.header}>
             <h3>Welcome back</h3>
           </div>
           <div style={styles.subheader}>
             <span>Sign into your account here:</span>
           </div>
-          <TextInput style={styles.inputLarge} placeholder="Email" />
-          <TextInput style={styles.inputLarge} placeholder="Password" type="password" />
+          <div>{this.state.errors.login && 'Wrong username or password'}</div>
+          <TextInput
+            style={styles.inputLarge}
+            name="email"
+            placeholder="Email"
+            value={this.state.email}
+            error={this.state.errors.email}
+            onChange={this.handleEmailChange}
+          />
+          <TextInput
+            style={styles.inputLarge}
+            name="password"
+            placeholder="Password"
+            type="password"
+            value={this.state.password}
+            error={this.state.errors.password}
+            onChange={this.handlePasswordChange}
+          />
           <div style={styles.forgotPassword}>
-            <span>Forgot your password?</span>
+            <span>Forgot your password? Too bad...</span>
           </div>
-          <Button style={styles.button} bsStyle="primary" bsSize="large" block>Sign In</Button>
+          <Button
+            type="submit"
+            style={styles.button}
+            bsStyle="primary"
+            bsSize="large"
+            block
+            disabled={isProcessing}
+          >{buttonText}</Button>
         </form>
         <div style={styles.subtext}>
-          <span>Dont have an account?</span>
-          <Button style={styles.subtextLink} bsStyle="link">Sign Up</Button>
+          <span>Don't have an account?</span>
+          <Link to="/signup">
+            <Button style={styles.subtextLink} bsStyle="link">Sign up</Button>
+          </Link>
         </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-})
+// const mapStateToProps = (state) => ({
+//   isProcessing: state.auth.isProcessing,
+// })
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
+export default connect(null, mapDispatchToProps)(LoginPage)
