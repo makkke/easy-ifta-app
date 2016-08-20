@@ -18,7 +18,6 @@ module.exports = {
       'react',
       'react-dom',
     ],
-    packageAlias: 'browser',
   },
 
   output: {
@@ -33,6 +32,7 @@ module.exports = {
       'client',
       'node_modules',
     ],
+    packageAlias: 'browser',
   },
 
   module: {
