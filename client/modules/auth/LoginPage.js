@@ -190,10 +190,6 @@ class LoginPage extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//   isProcessing: state.auth.isProcessing,
-// })
-
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actions, dispatch),
 })
