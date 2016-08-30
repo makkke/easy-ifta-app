@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import { Button, Modal } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
+import Modal, { Header, Title, Body } from 'react-bootstrap/lib/Modal'
 import Joi from 'joi'
 
 import TextInput from '../../../components/TextInput/TextInput'
@@ -65,41 +66,39 @@ class ConnectRoadSoFarModal extends Component {
     const buttonText = isProcessing ? 'Connecting...' : 'Connect'
 
     return (
-      <div>
-        <Modal show={this.props.show} onHide={this.props.onClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Login to Road so Far</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <form onSubmit={this.handleSubmit}>
-              <div>{this.state.errors.login && 'Wrong username or password'}</div>
-              <TextInput
-                name="email"
-                placeholder="Email"
-                value={this.state.email}
-                error={this.state.errors.email}
-                onChange={this.handleInputChange}
-              />
-              <TextInput
-                name="password"
-                placeholder="Password"
-                type="password"
-                value={this.state.password}
-                error={this.state.errors.password}
-                onChange={this.handleInputChange}
-              />
-              <Button
-                type="submit"
-                bsStyle="primary"
-                bsSize="large"
-                block
-                disabled={isProcessing}
-              >{buttonText}</Button>
-            </form>
-          </Modal.Body>
-        </Modal>
-      </div>
-   )
+      <Modal show={this.props.show} onHide={this.props.onClose}>
+        <Header closeButton>
+          <Title>Login to Road so Far</Title>
+        </Header>
+        <Body>
+          <form onSubmit={this.handleSubmit}>
+            <div>{this.state.errors.login && 'Wrong username or password'}</div>
+            <TextInput
+              name="email"
+              placeholder="Email"
+              value={this.state.email}
+              error={this.state.errors.email}
+              onChange={this.handleInputChange}
+            />
+            <TextInput
+              name="password"
+              placeholder="Password"
+              type="password"
+              value={this.state.password}
+              error={this.state.errors.password}
+              onChange={this.handleInputChange}
+            />
+            <Button
+              type="submit"
+              bsStyle="primary"
+              bsSize="large"
+              block
+              disabled={isProcessing}
+            >{buttonText}</Button>
+          </form>
+        </Body>
+      </Modal>
+    )
   }
 }
 
