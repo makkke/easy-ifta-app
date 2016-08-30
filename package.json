@@ -55,6 +55,7 @@
     "mongoose": "^4.5.8",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "pluralize": "^3.0.0",
     "react": "^15.3.0",
     "react-bootstrap": "^0.30.2",
     "react-dom": "^15.3.0",
@@ -62,7 +63,6 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",
     "redux": "^3.5.2",
-    "redux-router": "^2.1.2",
     "redux-thunk": "^2.1.0",
     "sanitize-html": "^1.13.0"
   },
@@ -103,7 +103,6 @@
     "nodemon": "^1.10.0",
     "null-loader": "^0.1.1",
     "nyc": "^7.1.0",
-    "pluralize": "^3.0.0",
     "postcss-cssnext": "^2.7.0",
     "postcss-focus": "^1.0.0",
     "postcss-loader": "^0.9.1",

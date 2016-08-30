@@ -14,4 +14,24 @@ export function me(req, res) {
   })
 }
 
-export default { me }
+export function update(req, res, next) {
+  User.findById(req.user.id).exec((err, user) => {
+    if (err) {
+      next(err)
+      return
+    }
+
+    user.connections = req.body.connections // eslint-disable-line
+
+    user.save((err1, savedUser) => {
+      if (err1) {
+        next(err1)
+        return
+      }
+
+      res.json(savedUser)
+    })
+  })
+}
+
+export default { me, update }

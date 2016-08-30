@@ -78,10 +78,10 @@ class SignupPage extends Component {
   }
 
   state = {
-    name: 'Slava Ivanov',
-    company: 'Exilium',
-    email: 'slava.eth@gmail.com',
-    password: 'test',
+    name: '',
+    company: '',
+    email: '',
+    password: '',
     isProcessing: false,
     errors: {},
   }
@@ -92,7 +92,7 @@ class SignupPage extends Component {
     const field = event.target.name
 
     errors[field] = null
-    errors.signup = false
+    errors.signup = null
 
     this.setState({ [field]: value, errors })
   }

@@ -20,7 +20,7 @@ if (typeof require.ensure !== 'function') {
  */
 if (process.env.NODE_ENV !== 'production') {
   // Require async routes only in development for react-hot-reloader to work.
-  require('./modules/report/ReportPage')
+  require('./modules/taxReturn/TaxReturnPage')
 }
 
 // react-router setup with code-splitting
@@ -31,7 +31,7 @@ export default (
       <IndexRoute
         getComponent={(nextState, cb) => {
           require.ensure([], require => {
-            cb(null, require('./modules/report/ReportPage').default)
+            cb(null, require('./modules/taxReturn/TaxReturnPage').default)
           })
         }}
       />

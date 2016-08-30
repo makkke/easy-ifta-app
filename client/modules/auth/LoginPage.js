@@ -91,22 +91,15 @@ class LoginPage extends Component {
     errors: {},
   }
 
-  handleEmailChange = (event) => {
-    const email = event.target.value.trim()
+  handleInputChange = (event) => {
     const { errors } = this.state
-    errors.email = null
-    errors.login = false
+    const value = event.target.value.trim()
+    const field = event.target.name
 
-    this.setState({ email, errors })
-  }
+    errors[field] = null
+    errors.login = null
 
-  handlePasswordChange = (event) => {
-    const password = event.target.value.trim()
-    const { errors } = this.state
-    errors.password = null
-    errors.login = false
-
-    this.setState({ password, errors })
+    this.setState({ [field]: value, errors })
   }
 
   handleSubmit = async (event) => {
@@ -119,8 +112,8 @@ class LoginPage extends Component {
     })
     const result = Joi.validate(this.state, schema, { allowUnknown: true })
     if (result.error) {
-      const path = result.error.details[0].path
-      this.setState({ errors: { [path]: result.error.details[0].message } })
+      const { path, message } = result.error.details[0]
+      this.setState({ errors: { [path]: message } })
       return
     }
 
@@ -156,7 +149,7 @@ class LoginPage extends Component {
             placeholder="Email"
             value={this.state.email}
             error={this.state.errors.email}
-            onChange={this.handleEmailChange}
+            onChange={this.handleInputChange}
           />
           <TextInput
             style={styles.inputLarge}
@@ -165,7 +158,7 @@ class LoginPage extends Component {
             type="password"
             value={this.state.password}
             error={this.state.errors.password}
-            onChange={this.handlePasswordChange}
+            onChange={this.handleInputChange}
           />
           <div style={styles.forgotPassword}>
             <span>Forgot your password? Too bad...</span>

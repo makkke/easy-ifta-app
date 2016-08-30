@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
 import theme from '../../../components/styles/theme'
+import { actions } from '../../../modules/auth/auth.module'
 
 function getStyles() {
   return {
@@ -20,7 +24,7 @@ function getStyles() {
   }
 }
 
-function Header() {
+function Header(props) {
   const styles = getStyles()
 
   return (
@@ -29,7 +33,13 @@ function Header() {
         <Link to="/" style={styles.logo} className="navbar-brand">EasyIFTA</Link>
         <ul className="nav navbar-nav pull-xs-right">
           <li className="nav-item">
-            <Link to="/login" className="nav-link">Login <span className="sr-only">(current)</span></Link>
+            <Link
+              to="/login"
+              className="nav-link"
+              onClick={() => {
+                props.actions.logout()
+              }}
+            >Logout <span className="sr-only">(current)</span></Link>
           </li>
         </ul>
       </div>
@@ -37,4 +47,12 @@ function Header() {
   )
 }
 
-export default Header
+Header.propTypes = {
+  actions: PropTypes.object.isRequired,
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(actions, dispatch),
+})
+
+export default connect(null, mapDispatchToProps)(Header)

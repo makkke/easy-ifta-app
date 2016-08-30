@@ -22,6 +22,11 @@ const UserSchema = new Schema({
   },
   hash: String,
   salt: String,
+
+  connections: [{
+    app: String,
+    apiKey: String,
+  }],
 })
 
 UserSchema.methods.setPassword = function setPassword(password) {
