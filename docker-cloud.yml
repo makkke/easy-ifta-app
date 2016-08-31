@@ -1,15 +1,15 @@
-simple-ifta-lb:
+easy-ifta-lb:
   image: tutum/haproxy:latest
   restart: always
   links:
-    - simple-ifta-app
+    - easy-ifta-app
   ports:
     - 80:80
   roles:
     - global
 
-simple-ifta-app:
-  image: vivanov1410/simple-ifta-app
+easy-ifta-app:
+  image: vivanov1410/easy-ifta-app
   autoredeploy: true
   restart: always
   target_num_containers: 3

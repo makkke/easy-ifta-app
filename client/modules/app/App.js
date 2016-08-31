@@ -26,8 +26,8 @@ class App extends Component {
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
         <div>
           <Helmet
-            title="Simple IFTA"
-            titleTemplate="%s | Simple IFTA"
+            title="Easy IFTA"
+            titleTemplate="%s | Easy IFTA"
             meta={[
               { charset: 'utf-8' },
               {
