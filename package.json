@@ -36,6 +36,7 @@
   "author": "Viatcheslav Ivanov <slava.eth@gmail.com>, Svetlana Ivanova <svetlana.ivanova0509@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "ava": "^0.16.0",
     "babel-core": "^6.13.2",
     "body-parser": "^1.15.2",
     "classnames": "^2.2.5",
@@ -67,7 +68,6 @@
     "sanitize-html": "^1.13.0"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-async-to-generator": "^6.8.0",
