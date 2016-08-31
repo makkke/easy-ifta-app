@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "description": "App for Easy IFTA",
   "scripts": {
-    "test": "npm run lint",
+    "test": "npm run lint && npm run test:unit",
     "testx": "cross-env NODE_ENV=test PORT=8080 MONGO_URL=mongodb://localhost:27017/mern-test node_modules/.bin/nyc node --harmony-proxies node_modules/.bin/ava",
     "test:unit": "ava",
     "watch:test": "npm run test -- --watch",
@@ -28,10 +28,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vivanov1410/simple-ifta-app.git"
+    "url": "git+https://github.com/vivanov1410/easy-ifta-app.git"
   },
   "bugs": {
-    "url": "https://github.com/vivanov1410/simple-ifta-app/issues"
+    "url": "https://github.com/vivanov1410/easy-ifta-app/issues"
   },
   "author": "Viatcheslav Ivanov <slava.eth@gmail.com>, Svetlana Ivanova <svetlana.ivanova0509@gmail.com>",
   "license": "MIT",

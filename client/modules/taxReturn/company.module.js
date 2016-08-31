@@ -1,8 +1,8 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-const LOAD_COMPANY = 'simple-ifta/company/LOAD_COMPANY'
-const UPDATE_COMPANY = 'simple-ifta/company/UPDATE_COMPANY'
+const LOAD_COMPANY = 'LOAD_COMPANY'
+const UPDATE_COMPANY = 'UPDATE_COMPANY'
 
 // ------------------------------------
 // Actions

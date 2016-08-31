@@ -3,9 +3,9 @@ import { roadSoFarApi } from '../../utils/api'
 // ------------------------------------
 // Constants
 // ------------------------------------
-const LOAD_FUEL_PURCHASES = 'simple-ifta/fuelPurchases/LOAD'
-const CREATE = 'simple-ifta/fuelPurchases/CREATE'
-const REMOVE = 'simple-ifta/fuelPurchases/REMOVE'
+const LOAD_FUEL_PURCHASES = 'LOAD_FUEL_PURCHASES'
+const CREATE = 'CREATE_FUEL_PURCHASE'
+const REMOVE = 'REMOVE_FUEL_PURCHASES'
 
 // ------------------------------------
 // Actions

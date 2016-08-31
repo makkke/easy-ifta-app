@@ -4,21 +4,21 @@ import { loadLatestTaxReturn } from '../taxReturn/taxReturn.module'
 // ------------------------------------
 // Constants
 // ------------------------------------
-const LOGIN_REQUEST = 'simple-ifta/auth/LOGIN_REQUEST'
-const LOGIN_SUCCESS = 'simple-ifta/auth/LOGIN_SUCCESS'
-const LOGIN_FAILURE = 'simple-ifta/auth/LOGIN_FAILURE'
+const LOGIN_REQUEST = 'LOGIN_REQUEST'
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+const LOGIN_FAILURE = 'LOGIN_FAILURE'
 
-const SIGNUP_REQUEST = 'simple-ifta/auth/SIGNUP_REQUEST'
-const SIGNUP_SUCCESS = 'simple-ifta/auth/SIGNUP_SUCCESS'
-const SIGNUP_FAILURE = 'simple-ifta/auth/LOGIN_FAILURE'
+const SIGNUP_REQUEST = 'SIGNUP_REQUEST'
+const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS'
+const SIGNUP_FAILURE = 'LOGIN_FAILURE'
 
-const LOGOUT = 'simple-ifta/auth/LOGOUT'
+const LOGOUT = 'LOGOUT'
 
-const LOAD_ME_REQUEST = 'easy-ifta/auth/LOAD_ME_REQUEST'
-const LOAD_ME_SUCCESS = 'easy-ifta/auth/LOAD_ME_SUCCESS'
-const LOAD_ME_FAILURE = 'easy-ifta/auth/LOAD_ME_FAILURE'
+const LOAD_ME_REQUEST = 'LOAD_ME_REQUEST'
+const LOAD_ME_SUCCESS = 'LOAD_ME_SUCCESS'
+const LOAD_ME_FAILURE = 'LOAD_ME_FAILURE'
 
-const CREATE_CONNECTION = 'easy-ifta/auth/CREATE_CONNECTION'
+const CREATE_CONNECTION = 'CREATE_CONNECTION'
 
 // ------------------------------------
 // Actions

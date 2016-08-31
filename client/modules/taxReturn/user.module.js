@@ -1,8 +1,8 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-const LOAD_USER = 'simple-ifta/user/LOAD_USER'
-const UPDATE_USER = 'simple-ifta/user/UPDATE_USER'
+const LOAD_USER = 'LOAD_USER'
+const UPDATE_USER = 'UPDATE_USER'
 
 // ------------------------------------
 // Actions

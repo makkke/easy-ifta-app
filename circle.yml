@@ -5,12 +5,12 @@ machine:
 dependencies:
   override:
     - docker login --email=$DOCKER_EMAIL --username=$DOCKER_USER --password=$DOCKER_PASSWORD
-    - docker build --tag=vivanov1410/simple-ifta-app:${CIRCLE_SHA1} .
+    - docker build --tag=vivanov1410/easy-ifta-app:${CIRCLE_SHA1} .
 
 test:
   override:
-    - docker run --rm vivanov1410/simple-ifta-app:${CIRCLE_SHA1} npm test
-    - docker run -d -p 8080:8080 vivanov1410/simple-ifta-app:${CIRCLE_SHA1}; sleep 10
+    - docker run --rm vivanov1410/easy-ifta-app:${CIRCLE_SHA1} npm test
+    - docker run -d -p 8080:8080 vivanov1410/easy-ifta-app:${CIRCLE_SHA1}; sleep 10
     - curl --retry 10 --retry-delay 5 -v http://localhost:8080
 
 deployment:
@@ -18,7 +18,7 @@ deployment:
     branch: master
     commands:
       # push image to Dockerhub
-      # - VERSION=$(node -p -e "require('./package.json').version") && docker tag vivanov1410/simple-ifta-app:${CIRCLE_SHA1} vivanov1410/simple-ifta-app:${VERSION}
-      - docker tag -f vivanov1410/simple-ifta-app:${CIRCLE_SHA1} vivanov1410/simple-ifta-app
-      - docker rmi vivanov1410/simple-ifta-app:${CIRCLE_SHA1}
-      - docker push vivanov1410/simple-ifta-app
+      # - VERSION=$(node -p -e "require('./package.json').version") && docker tag vivanov1410/easy-ifta-app:${CIRCLE_SHA1} vivanov1410/easy-ifta-app:${VERSION}
+      - docker tag -f vivanov1410/easy-ifta-app:${CIRCLE_SHA1} vivanov1410/easy-ifta-app
+      - docker rmi vivanov1410/easy-ifta-app:${CIRCLE_SHA1}
+      - docker push vivanov1410/easy-ifta-app
