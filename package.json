@@ -1,7 +1,7 @@
 {
-  "name": "simple-ifta-app",
-  "version": "0.0.1",
-  "description": "App for Simple IFTA",
+  "name": "easy-ifta-app",
+  "version": "0.2.0",
+  "description": "App for Easy IFTA",
   "scripts": {
     "test": "npm run lint",
     "testx": "cross-env NODE_ENV=test PORT=8080 MONGO_URL=mongodb://localhost:27017/mern-test node_modules/.bin/nyc node --harmony-proxies node_modules/.bin/ava",
@@ -33,9 +33,10 @@
   "bugs": {
     "url": "https://github.com/vivanov1410/simple-ifta-app/issues"
   },
-  "author": "Viatcheslav Ivanov <slava.eth@gmaio.com>, Svetlana Ivanova <svetlana.ivanova0509@gmail.com>",
+  "author": "Viatcheslav Ivanov <slava.eth@gmail.com>, Svetlana Ivanova <svetlana.ivanova0509@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "ava": "^0.16.0",
     "babel-core": "^6.13.2",
     "body-parser": "^1.15.2",
     "classnames": "^2.2.5",
@@ -67,7 +68,6 @@
     "sanitize-html": "^1.13.0"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-async-to-generator": "^6.8.0",
