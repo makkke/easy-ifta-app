@@ -2,7 +2,7 @@ version: '2'
 
 services:
   app:
-    image: vivanov1410/simple-ifta-app
+    image: vivanov1410/simple-ifta-app:0.2.0
     ports:
      - '8080:8080'
 
