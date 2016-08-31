@@ -1,13 +1,14 @@
 import React, { PropTypes } from 'react'
 import classnames from 'classnames'
 
-function TextInput({ name, placeholder, value, error, onChange, onBlur }) {
+function TextInput({ type = 'text', name, style, placeholder, value, error, onChange, onBlur }) {
   const className = classnames('form-group', { 'has-danger': error && error.length > 0 })
 
   return (
     <div className={className}>
       <input
-        type="text"
+        type={type}
+        style={style}
         className="form-control"
         name={name}
         placeholder={placeholder}
@@ -23,6 +24,8 @@ function TextInput({ name, placeholder, value, error, onChange, onBlur }) {
 }
 
 TextInput.propTypes = {
+  type: PropTypes.string,
+  style: PropTypes.object,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,

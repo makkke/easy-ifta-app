@@ -17,7 +17,7 @@ module.exports = {
     vendor: [
       'react',
       'react-dom',
-    ]
+    ],
   },
 
   output: {
@@ -32,6 +32,7 @@ module.exports = {
       'client',
       'node_modules',
     ],
+    packageAlias: 'browser',
   },
 
   module: {
@@ -49,7 +50,7 @@ module.exports = {
         loaders: ['style-loader', 'css-loader'],
       }, {
         test: /\.jsx*$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /joi-browser/],
         loader: 'babel',
       }, {
         test: /\.(jpe?g|gif|png|svg)$/i,

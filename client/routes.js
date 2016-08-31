@@ -3,6 +3,9 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
 import App from './modules/app/App'
+import Main from './modules/app/Main'
+import Registration from './modules/auth/Registration'
+import requireAuthentication from './components/AuthenticatedComponent'
 
 // require.ensure polyfill for node
 if (typeof require.ensure !== 'function') {
@@ -17,19 +20,39 @@ if (typeof require.ensure !== 'function') {
  */
 if (process.env.NODE_ENV !== 'production') {
   // Require async routes only in development for react-hot-reloader to work.
-  require('./modules/report/ReportPage')
+  require('./modules/taxReturn/TaxReturnPage')
 }
 
 // react-router setup with code-splitting
 // More info: http://blog.mxstbr.com/2016/01/react-apps-with-pages/
 export default (
   <Route path="/" component={App}>
-    <IndexRoute
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/report/ReportPage').default)
-        })
-      }}
-    />
+    <Route component={requireAuthentication(Main)}>
+      <IndexRoute
+        getComponent={(nextState, cb) => {
+          require.ensure([], require => {
+            cb(null, require('./modules/taxReturn/TaxReturnPage').default)
+          })
+        }}
+      />
+    </Route>
+    <Route component={Registration}>
+      <Route
+        path="login"
+        getComponent={(nextState, cb) => {
+          require.ensure([], require => {
+            cb(null, require('./modules/auth/LoginPage').default)
+          })
+        }}
+      />
+      <Route
+        path="signup"
+        getComponent={(nextState, cb) => {
+          require.ensure([], require => {
+            cb(null, require('./modules/auth/SignupPage').default)
+          })
+        }}
+      />
+    </Route>
   </Route>
 )
