@@ -23,9 +23,7 @@ export default {
     url: process.env.API_URL || '/api',
   },
 
-  roadSoFar: {
-    api: {
-      url: process.env.ROAD_SO_FAR_API_URL || 'http://localhost:3000',
-    },
+  roadsofar: {
+    api: process.env.ROAD_SO_FAR_API || 'http://roadsofar',
   },
 }

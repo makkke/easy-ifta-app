@@ -1,8 +1,10 @@
-app:
-  build: .
-  command: npm run start:dev
-  ports:
-   - 8080:8080
-  volumes:
-    - .:/home/lurtz/app
-    - /home/lurtz/app/node_modules
+version: '2'
+
+services:
+  app:
+    image: vivanov1410/simple-ifta-app
+    ports:
+     - '8080:8080'
+
+  roadsofar:
+    image: vivanov1410/road-so-far-api

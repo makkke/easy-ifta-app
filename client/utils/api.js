@@ -46,9 +46,7 @@ export function secureApi(token, endpoint, method = 'get', body) {
 }
 
 export function roadSoFarApi(endpoint, method = 'GET', body, headers) {
-  const { url } = config.roadSoFar.api
-
-  return fetch(`${url}/${endpoint}`, {
+  return fetch(`${config.roadsofar.api}/${endpoint}`, {
     headers: {
       ...headers,
       Accept: 'application/json',
