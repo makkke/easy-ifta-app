@@ -65,7 +65,7 @@ function show(req, res) {
   })
 }
 
-export function showByPeriod(req, res) {
+function showByPeriod(req, res) {
   const { year, quarter } = req.params
 
   TaxReturn.findOne({

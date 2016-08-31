@@ -1,7 +1,7 @@
 import httpStatus from 'http-status'
 import User from '../models/user.model'
 
-export function me(req, res) {
+function me(req, res) {
   if (!req.user.id) {
     res.status(httpStatus.Unauthorized).json({
       message: 'UnauthorizedError: private profile',
@@ -14,7 +14,7 @@ export function me(req, res) {
   })
 }
 
-export function update(req, res, next) {
+function update(req, res, next) {
   User.findById(req.user.id).exec((err, user) => {
     if (err) {
       next(err)

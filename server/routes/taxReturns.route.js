@@ -18,7 +18,6 @@ router.route('/')
 router.route('/:id')
   .get(auth, controller.show)
   .put(auth, validate(validator.update), controller.update)
-  // .delete(auth, controller.remove)
 
 router.route('/:year/:quarter')
   .get(auth, controller.showByPeriod)
