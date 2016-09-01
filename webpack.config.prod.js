@@ -66,7 +66,9 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         CLIENT: JSON.stringify(true),
-        'NODE_ENV': JSON.stringify('production'),
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
+        'API_URL': JSON.stringify(process.env.API_URL || '/api'),
+        'ROAD_SO_FAR_API': JSON.stringify(process.env.ROAD_SO_FAR_API || 'http://roadsofar'),
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({

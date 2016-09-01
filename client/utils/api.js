@@ -1,9 +1,9 @@
 import fetch from 'isomorphic-fetch'
 
-import config from '../../server/config'
+const { API_URL, ROAD_SO_FAR_API } = process.env
 
 export function api(endpoint, method = 'get', body) {
-  return fetch(`${config.api.url}/${endpoint}`, {
+  return fetch(`${API_URL}/${endpoint}`, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export function api(endpoint, method = 'get', body) {
 }
 
 export function secureApi(token, endpoint, method = 'get', body) {
-  return fetch(`${config.api.url}/${endpoint}`, {
+  return fetch(`${API_URL}/${endpoint}`, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export function secureApi(token, endpoint, method = 'get', body) {
 }
 
 export function roadSoFarApi(endpoint, method = 'GET', body, headers) {
-  return fetch(`${config.roadsofar.api}/${endpoint}`, {
+  return fetch(`${ROAD_SO_FAR_API}/${endpoint}`, {
     headers: {
       ...headers,
       Accept: 'application/json',
