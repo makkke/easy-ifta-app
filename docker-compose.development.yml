@@ -1,9 +1,0 @@
-version: '2'
-
-services:
-  app:
-    build: .
-    command: npm run start:dev
-    volumes:
-      - .:/home/lurtz/app
-      - /home/lurtz/app/node_modules
